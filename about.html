@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn about Trek Explorers India - your trusted partner for Himalayan adventures.">
+    <title>About Us | Trek Explorers India</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .page-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .page-subtitle {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            margin-bottom: var(--space-4xl);
+        }
+
+        .about-section h2 {
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-lg);
+        }
+
+        .about-section p {
+            font-size: var(--text-lg);
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-xl);
+            margin-top: var(--space-2xl);
+        }
+
+        @media (max-width: 640px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .value-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .value-title {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .value-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-top: var(--space-2xl);
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto var(--space-lg);
+        }
+
+        .team-name {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .team-role {
+            font-size: var(--text-sm);
+            color: var(--color-accent);
+            margin-bottom: var(--space-sm);
+        }
+
+        .team-bio {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+
+<body data-page="about">
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">🏔️</div>
+                    <span>Trek<span class="text-gradient">Explorers</span></span>
+                </a>
+
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="treks.html" class="nav-link">All Treks</a>
+                    <a href="community-treks.html" class="nav-link">Community Treks</a>
+                    <a href="create-trek.html" class="nav-link">Create a Trek</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions flex items-center gap-md">
+                    <a href="create-trek.html" class="btn btn-primary btn-sm">Create Trek</a>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">About <span class="text-gradient">Trek Explorers</span></h1>
+            <p class="page-subtitle">
+                Connecting adventurers with the majestic Himalayas since 2015
+            </p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="section">
+        <div class="container">
+            <div class="about-content">
+                <!-- Our Story -->
+                <div class="about-section">
+                    <h2>Our <span class="text-gradient">Story</span></h2>
+                    <p>
+                        Trek Explorers India was born from a simple belief: that the mountains have the power to
+                        transform lives. Founded by a group of passionate trekkers in 2015, we started with a dream to
+                        make Himalayan adventures accessible to everyone.
+                    </p>
+                    <p style="margin-top: var(--space-lg);">
+                        What began as weekend treks with friends has grown into a community of over 15,000 trekkers who
+                        share our love for the outdoors. We've led expeditions across Uttarakhand, Himachal Pradesh,
+                        Ladakh, Kashmir, and beyond—always with safety, sustainability, and unforgettable experiences at
+                        our core.
+                    </p>
+                </div>
+
+                <!-- Our Values -->
+                <div class="about-section">
+                    <h2>Our <span class="text-gradient">Values</span></h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">🛡️</div>
+                            <h3 class="value-title">Safety First</h3>
+                            <p class="value-description">
+                                Every trek is planned with meticulous attention to safety. Our experienced guides are
+                                trained in first aid and emergency response.
+                            </p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🌿</div>
+                            <h3 class="value-title">Leave No Trace</h3>
+                            <p class="value-description">
+                                We're committed to preserving the pristine beauty of the mountains for future
+                                generations through responsible trekking practices.
+                            </p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🤝</div>
+                            <h3 class="value-title">Community Spirit</h3>
+                            <p class="value-description">
+                                We believe in the power of shared experiences. Our treks bring together people from all
+                                walks of life.
+                            </p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">⭐</div>
+                            <h3 class="value-title">Excellence</h3>
+                            <p class="value-description">
+                                From planning to execution, we strive for excellence in everything we do. Your
+                                experience matters to us.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Choose Us -->
+                <div class="about-section">
+                    <h2>Why Choose <span class="text-gradient">Us</span></h2>
+                    <div class="grid grid-cols-4" style="margin-top: var(--space-2xl);">
+                        <div class="category-card">
+                            <div class="category-icon">🏔️</div>
+                            <h3 class="category-title">50+ Treks</h3>
+                            <p class="category-count">Across 12 states</p>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon">👥</div>
+                            <h3 class="category-title">15,000+</h3>
+                            <p class="category-count">Happy trekkers</p>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon">⭐</div>
+                            <h3 class="category-title">4.9 Rating</h3>
+                            <p class="category-count">Average review</p>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon">🎯</div>
+                            <h3 class="category-title">10+ Years</h3>
+                            <p class="category-count">Of experience</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Our Team -->
+                <div class="about-section">
+                    <h2>Meet Our <span class="text-gradient">Team</span></h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-avatar">👨‍💼</div>
+                            <h3 class="team-name">Rajesh Sharma</h3>
+                            <p class="team-role">Founder & Lead Guide</p>
+                            <p class="team-bio">20+ years of trekking experience across the Himalayas</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">👩‍💼</div>
+                            <h3 class="team-name">Priya Verma</h3>
+                            <p class="team-role">Operations Head</p>
+                            <p class="team-bio">Ensures every trek runs smoothly and safely</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">🧑‍💼</div>
+                            <h3 class="team-name">Amit Kumar</h3>
+                            <p class="team-role">Senior Trek Leader</p>
+                            <p class="team-bio">Certified mountaineer with 100+ expeditions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section"
+        style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);">
+        <div class="container text-center">
+            <h2 class="section-title mb-lg">Ready for Your Next Adventure?</h2>
+            <p class="section-subtitle mb-xl" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                Join thousands of trekkers who have discovered their love for the mountains with us.
+            </p>
+            <div class="flex gap-md justify-center flex-wrap">
+                <a href="treks.html" class="btn btn-primary btn-lg">Explore Treks</a>
+                <a href="contact.html" class="btn btn-secondary btn-lg">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 TrekExplorers India. All rights reserved.</p>
+                <div class="flex gap-lg">
+                    <a href="index.html" class="nav-link" style="font-size: var(--text-sm);">Home</a>
+                    <a href="treks.html" class="nav-link" style="font-size: var(--text-sm);">All Treks</a>
+                    <a href="contact.html" class="nav-link" style="font-size: var(--text-sm);">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="treks.html" class="nav-link">All Treks</a>
+        <a href="community-treks.html" class="nav-link">Community Treks</a>
+        <a href="create-trek.html" class="nav-link">Create a Trek</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <style>
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 250;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: var(--color-bg-card);
+            z-index: 260;
+            padding: 80px var(--space-xl) var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            transition: right 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav .nav-link {
+            font-size: var(--text-lg);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

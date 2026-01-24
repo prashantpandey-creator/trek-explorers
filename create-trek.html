@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Create your own trek for others to join. Organize group treks and meet fellow adventurers.">
+    <title>Create a Trek | Trek Explorers India</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .page-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .page-subtitle {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-3xl) 0;
+        }
+
+        .form-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+        }
+
+        .form-section {
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-2xl);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .form-section:last-of-type {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .form-section-title {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .form-section-number {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-accent);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-info {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-xl);
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .form-info strong {
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+
+<body data-page="create-trek">
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">🏔️</div>
+                    <span>Trek<span class="text-gradient">Explorers</span></span>
+                </a>
+
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="treks.html" class="nav-link">All Treks</a>
+                    <a href="community-treks.html" class="nav-link">Community Treks</a>
+                    <a href="create-trek.html" class="nav-link">Create a Trek</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions flex items-center gap-md">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Create a <span class="text-gradient">Community Trek</span></h1>
+            <p class="page-subtitle">
+                Organize your own trek and invite fellow adventurers to join you. Share the experience, split costs, and
+                make new friends!
+            </p>
+        </div>
+    </section>
+
+    <!-- Create Trek Form -->
+    <section class="container">
+        <div class="form-container">
+            <div class="form-info">
+                <strong>💡 Tip:</strong> Community treks are a great way to meet fellow trekkers, share costs, and have
+                a memorable adventure together. Your trek will be listed on our Community Treks page for others to
+                discover and join.
+            </div>
+
+            <div class="form-card">
+                <form id="createTrekForm">
+                    <!-- Basic Info -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <span class="form-section-number">1</span>
+                            Basic Information
+                        </h3>
+
+                        <div class="form-group">
+                            <label class="form-label" for="trekName">Trek Name *</label>
+                            <input type="text" class="form-input" id="trekName" name="trekName"
+                                placeholder="e.g., Weekend Valley Exploration" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="location">Location/Region *</label>
+                                <input type="text" class="form-input" id="location" name="location"
+                                    placeholder="e.g., Himachal Pradesh" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="difficulty">Difficulty Level *</label>
+                                <select class="form-select form-input" id="difficulty" name="difficulty" required>
+                                    <option value="">Select difficulty</option>
+                                    <option value="Easy">Easy</option>
+                                    <option value="Easy-Moderate">Easy-Moderate</option>
+                                    <option value="Moderate">Moderate</option>
+                                    <option value="Difficult">Difficult</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="days">Duration (Days) *</label>
+                                <input type="number" class="form-input" id="days" name="days" min="1" max="30"
+                                    placeholder="e.g., 3" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="nights">Duration (Nights) *</label>
+                                <input type="number" class="form-input" id="nights" name="nights" min="0" max="30"
+                                    placeholder="e.g., 2" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="groupSize">Maximum Group Size *</label>
+                                <input type="number" class="form-input" id="groupSize" name="groupSize" min="2" max="50"
+                                    placeholder="e.g., 15" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="date">Trek Date *</label>
+                                <input type="date" class="form-input" id="date" name="date" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trek Details -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <span class="form-section-number">2</span>
+                            Trek Details
+                        </h3>
+
+                        <div class="form-group">
+                            <label class="form-label" for="description">Trek Description *</label>
+                            <textarea class="form-textarea" id="description" name="description" rows="5"
+                                placeholder="Describe your trek - what makes it special, what participants can expect, highlights, etc."
+                                required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="meetingPoint">Meeting Point *</label>
+                            <input type="text" class="form-input" id="meetingPoint" name="meetingPoint"
+                                placeholder="e.g., Delhi Railway Station, Gate 1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="inclusions">What's Included (one item per line)</label>
+                            <textarea class="form-textarea" id="inclusions" name="inclusions" rows="4"
+                                placeholder="e.g.,&#10;Transportation from meeting point&#10;All meals during trek&#10;Camping equipment&#10;Guide services"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Pricing & Contact -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <span class="form-section-number">3</span>
+                            Pricing & Contact
+                        </h3>
+
+                        <div class="form-group">
+                            <label class="form-label" for="price">Cost Per Person (₹) *</label>
+                            <input type="number" class="form-input" id="price" name="price" min="0"
+                                placeholder="e.g., 3500" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="organizerName">Your Name *</label>
+                                <input type="text" class="form-input" id="organizerName" name="organizerName"
+                                    placeholder="Full name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="contact">Contact (Phone/Email) *</label>
+                                <input type="text" class="form-input" id="contact" name="contact"
+                                    placeholder="Phone number or email" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="form-group">
+                        <label class="filter-option" style="padding: 0;">
+                            <input type="checkbox" required>
+                            <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">
+                                I agree to the <a href="#" style="color: var(--color-accent);">terms and conditions</a>
+                                for creating community treks
+                            </span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg"
+                        style="width: 100%; margin-top: var(--space-lg);">
+                        <span>Create Trek</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 TrekExplorers India. All rights reserved.</p>
+                <div class="flex gap-lg">
+                    <a href="index.html" class="nav-link" style="font-size: var(--text-sm);">Home</a>
+                    <a href="treks.html" class="nav-link" style="font-size: var(--text-sm);">All Treks</a>
+                    <a href="community-treks.html" class="nav-link" style="font-size: var(--text-sm);">Community
+                        Treks</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="treks.html" class="nav-link">All Treks</a>
+        <a href="community-treks.html" class="nav-link">Community Treks</a>
+        <a href="create-trek.html" class="nav-link">Create a Trek</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <style>
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 250;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: var(--color-bg-card);
+            z-index: 260;
+            padding: 80px var(--space-xl) var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            transition: right 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav .nav-link {
+            font-size: var(--text-lg);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

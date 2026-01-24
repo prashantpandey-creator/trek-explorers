@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore all trekking expeditions across the Himalayas. Filter by difficulty, location, and duration.">
+    <title>All Treks | Trek Explorers India</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .page-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .page-subtitle {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .treks-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--space-2xl);
+            padding: var(--space-3xl) 0;
+        }
+
+        @media (max-width: 1024px) {
+            .treks-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .filters-sidebar {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        @media (max-width: 1024px) {
+            .filters-sidebar {
+                position: static;
+            }
+        }
+
+        .filter-group {
+            margin-bottom: var(--space-xl);
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-md);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .filter-option:hover {
+            background: var(--color-bg-elevated);
+        }
+
+        .filter-option input {
+            accent-color: var(--color-accent);
+        }
+
+        .filter-option label {
+            font-size: var(--text-sm);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .filter-count {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .results-count {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+        .sort-select {
+            padding: var(--space-sm) var(--space-md);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: var(--color-text-primary);
+            font-size: var(--text-sm);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body data-page="treks">
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">🏔️</div>
+                    <span>Trek<span class="text-gradient">Explorers</span></span>
+                </a>
+
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="treks.html" class="nav-link">All Treks</a>
+                    <a href="community-treks.html" class="nav-link">Community Treks</a>
+                    <a href="create-trek.html" class="nav-link">Create a Trek</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions flex items-center gap-md">
+                    <a href="create-trek.html" class="btn btn-primary btn-sm">Create Trek</a>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Explore All <span class="text-gradient">Treks</span></h1>
+            <p class="page-subtitle">
+                Discover breathtaking Himalayan adventures. Filter by difficulty, location, and duration to find your
+                perfect trek.
+            </p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section" style="margin-top: 0; border-radius: 0;">
+        <div class="container">
+            <div class="search-box">
+                <div class="search-input-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35" />
+                    </svg>
+                    <input type="text" class="search-input" id="searchInput"
+                        placeholder="Search treks by name, location, or difficulty...">
+                </div>
+                <button class="btn btn-primary" id="searchBtn">Search</button>
+            </div>
+
+            <div class="search-filters">
+                <button class="filter-tag active" data-filter="all">All Treks</button>
+                <button class="filter-tag" data-filter="weekend-treks">Weekend Treks</button>
+                <button class="filter-tag" data-filter="winter-treks">Winter Treks</button>
+                <button class="filter-tag" data-filter="adventure-treks">Adventure Treks</button>
+                <button class="filter-tag" data-filter="backpacking-trips">Backpacking</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treks Listing -->
+    <section class="container">
+        <div class="treks-layout">
+            <!-- Sidebar Filters -->
+            <aside class="filters-sidebar">
+                <div class="filter-group">
+                    <h3 class="filter-title">Difficulty</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="difficulty" value="Easy">
+                            <span>Easy</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="difficulty" value="Moderate">
+                            <span>Moderate</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="difficulty" value="Difficult">
+                            <span>Difficult</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Location</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="location" value="Uttarakhand">
+                            <span>Uttarakhand</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="location" value="Himachal Pradesh">
+                            <span>Himachal Pradesh</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="location" value="Ladakh">
+                            <span>Ladakh</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="location" value="Kashmir">
+                            <span>Kashmir</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Duration</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="duration" value="weekend">
+                            <span>Weekend (1-2 days)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="duration" value="short">
+                            <span>Short (3-5 days)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="duration" value="long">
+                            <span>Long (6+ days)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Price Range</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="budget">
+                            <span>Under ₹3,000</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="mid">
+                            <span>₹3,000 - ₹10,000</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="premium">
+                            <span>Above ₹10,000</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline" style="width: 100%;" onclick="clearFilters()">Clear All Filters</button>
+            </aside>
+
+            <!-- Trek Grid -->
+            <div>
+                <div class="results-header">
+                    <span class="results-count" id="resultsCount">Loading treks...</span>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="popular">Sort by: Popular</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="duration-short">Duration: Short to Long</option>
+                        <option value="duration-long">Duration: Long to Short</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-3" id="trekGrid">
+                    <!-- Trek cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">🏔️</div>
+                        <span>Trek<span class="text-gradient">Explorers</span></span>
+                    </a>
+                    <p class="footer-description">
+                        Your trusted partner for Himalayan adventures.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="treks.html">All Treks</a></li>
+                        <li><a href="community-treks.html">Community Treks</a></li>
+                        <li><a href="create-trek.html">Create a Trek</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Popular Treks</h4>
+                    <ul class="footer-links">
+                        <li><a href="trek-detail.html?id=kedarkantha-winter-trek">Kedarkantha Trek</a></li>
+                        <li><a href="trek-detail.html?id=brahmatal-trek">Brahmatal Trek</a></li>
+                        <li><a href="trek-detail.html?id=nag-tibba-trek">Nag Tibba Trek</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="treks.html?location=uttarakhand">Uttarakhand</a></li>
+                        <li><a href="treks.html?location=himachal">Himachal Pradesh</a></li>
+                        <li><a href="treks.html?location=ladakh">Ladakh</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 TrekExplorers India. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="treks.html" class="nav-link">All Treks</a>
+        <a href="community-treks.html" class="nav-link">Community Treks</a>
+        <a href="create-trek.html" class="nav-link">Create a Trek</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <style>
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 250;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: var(--color-bg-card);
+            z-index: 260;
+            padding: 80px var(--space-xl) var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            transition: right 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav .nav-link {
+            font-size: var(--text-lg);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+  <script src="main.js"></script>
+    <script>
+        // Update results count after treks load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.trek-card');
+                document.getElementById('resultsCount').textContent = `Showing ${cards.length} treks`;
+            }, 500);
+        });
+
+        function clearFilters() {
+            document.querySelectorAll('.filter-option input').forEach(input => {
+                input.checked = false;
+            });
+            document.querySelectorAll('.filter-tag').forEach(tag => {
+                tag.classList.remove('active');
+                if (tag.dataset.filter === 'all') tag.classList.add('active');
+            });
+            // Reload all treks
+            if (window.TrekExplorers) {
+                window.TrekExplorers.loadTrekData().then(data => {
+                    const grid = document.getElementById('trekGrid');
+                    grid.innerHTML = data.treks.map(window.TrekExplorers.createTrekCard).join('');
+                    document.getElementById('resultsCount').textContent = `Showing ${data.treks.length} treks`;
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

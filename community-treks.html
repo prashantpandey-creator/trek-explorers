@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Browse and join community-organized treks. Connect with fellow adventurers and explore together.">
+    <title>Community Treks | Trek Explorers India</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .page-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .page-subtitle {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .community-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-3xl);
+            margin-top: var(--space-xl);
+        }
+
+        .community-stat {
+            text-align: center;
+        }
+
+        .community-stat-value {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: white;
+        }
+
+        .community-stat-label {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-banner {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-3xl);
+        }
+
+        @media (max-width: 768px) {
+            .cta-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .cta-content h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .cta-content p {
+            color: var(--color-text-muted);
+            margin-bottom: 0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--space-4xl);
+            background: var(--color-bg-card);
+            border: 1px dashed var(--color-border);
+            border-radius: var(--radius-xl);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: var(--space-lg);
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            margin-bottom: var(--space-md);
+        }
+
+        .empty-state p {
+            color: var(--color-text-muted);
+            max-width: 400px;
+            margin: 0 auto var(--space-xl);
+        }
+    </style>
+</head>
+
+<body data-page="community-treks">
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">🏔️</div>
+                    <span>Trek<span class="text-gradient">Explorers</span></span>
+                </a>
+
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="treks.html" class="nav-link">All Treks</a>
+                    <a href="community-treks.html" class="nav-link">Community Treks</a>
+                    <a href="create-trek.html" class="nav-link">Create a Trek</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions flex items-center gap-md">
+                    <a href="create-trek.html" class="btn btn-primary btn-sm">Create Trek</a>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Community <span style="color: white;">Treks</span></h1>
+            <p class="page-subtitle">
+                Join treks organized by fellow adventurers. Meet new people, share experiences, and explore together!
+            </p>
+
+            <a href="create-trek.html" class="btn btn-primary btn-lg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12h14" />
+                </svg>
+                <span>Create Your Own Trek</span>
+            </a>
+
+            <div class="community-stats">
+                <div class="community-stat">
+                    <div class="community-stat-value" id="totalTreks">0</div>
+                    <div class="community-stat-label">Active Treks</div>
+                </div>
+                <div class="community-stat">
+                    <div class="community-stat-value" id="totalSpots">0</div>
+                    <div class="community-stat-label">Spots Available</div>
+                </div>
+                <div class="community-stat">
+                    <div class="community-stat-value" id="totalOrganizers">0</div>
+                    <div class="community-stat-label">Organizers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Treks Grid -->
+    <section class="section">
+        <div class="container">
+            <!-- CTA Banner -->
+            <div class="cta-banner">
+                <div class="cta-content">
+                    <h3>🎒 Want to organize a trek?</h3>
+                    <p>Create your own community trek and invite others to join your adventure!</p>
+                </div>
+                <a href="create-trek.html" class="btn btn-outline">Create a Trek</a>
+            </div>
+
+            <!-- Trek Grid -->
+            <div class="grid grid-cols-3" id="communityTreksGrid">
+                <!-- Community treks will be dynamically inserted here -->
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <div class="empty-state-icon">🏕️</div>
+                    <h3>No community treks yet</h3>
+                    <p>Be the first to create a trek and invite others to join your adventure!</p>
+                    <a href="create-trek.html" class="btn btn-primary">Create the First Trek</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" style="background: var(--color-bg-card);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How Community Treks <span class="text-gradient">Work</span></h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="grid grid-cols-4">
+                <div class="category-card">
+                    <div class="category-icon">📝</div>
+                    <h3 class="category-title">1. Create</h3>
+                    <p class="category-count">Fill out the form with trek details</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📢</div>
+                    <h3 class="category-title">2. Share</h3>
+                    <p class="category-count">Your trek gets listed for others to see</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👥</div>
+                    <h3 class="category-title">3. Connect</h3>
+                    <p class="category-count">Interested trekkers join your group</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🏔️</div>
+                    <h3 class="category-title">4. Trek!</h3>
+                    <p class="category-count">Enjoy the adventure together</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">🏔️</div>
+                        <span>Trek<span class="text-gradient">Explorers</span></span>
+                    </a>
+                    <p class="footer-description">
+                        Your trusted partner for Himalayan adventures.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="treks.html">All Treks</a></li>
+                        <li><a href="community-treks.html">Community Treks</a></li>
+                        <li><a href="create-trek.html">Create a Trek</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Popular Treks</h4>
+                    <ul class="footer-links">
+                        <li><a href="trek-detail.html?id=kedarkantha-winter-trek">Kedarkantha Trek</a></li>
+                        <li><a href="trek-detail.html?id=brahmatal-trek">Brahmatal Trek</a></li>
+                        <li><a href="trek-detail.html?id=nag-tibba-trek">Nag Tibba Trek</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="treks.html?location=uttarakhand">Uttarakhand</a></li>
+                        <li><a href="treks.html?location=himachal">Himachal Pradesh</a></li>
+                        <li><a href="treks.html?location=ladakh">Ladakh</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 TrekExplorers India. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="treks.html" class="nav-link">All Treks</a>
+        <a href="community-treks.html" class="nav-link">Community Treks</a>
+        <a href="create-trek.html" class="nav-link">Create a Trek</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <style>
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 250;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: var(--color-bg-card);
+            z-index: 260;
+            padding: 80px var(--space-xl) var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            transition: right 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav .nav-link {
+            font-size: var(--text-lg);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+  <script src="main.js"></script>
+    <script>
+        // Update stats
+        document.addEventListener('DOMContentLoaded', () => {
+            const stored = localStorage.getItem('userTreks');
+            if (stored) {
+                const treks = JSON.parse(stored);
+                document.getElementById('totalTreks').textContent = treks.length;
+                document.getElementById('totalSpots').textContent = treks.reduce((sum, t) => sum + (t.spotsLeft || 0), 0);
+                document.getElementById('totalOrganizers').textContent = new Set(treks.map(t => t.organizer)).size;
+            }
+        });
+    </script>
+</body>
+
+</html>
